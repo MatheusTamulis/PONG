@@ -26,7 +26,7 @@ public class Bolinha : MonoBehaviour
 
     IEnumerator DirecaoBolinha()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         int direcao = Random.Range(0,3);
 
