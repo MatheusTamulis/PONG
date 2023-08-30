@@ -11,12 +11,12 @@ public class Player2 : MonoBehaviour
 
     Vector3 posicaoBola;
 
-    Vector2 raquete;
+    Vector3 raquete;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        raquete = transform.position;
     }
 
     // Update is called once per frame
@@ -25,7 +25,6 @@ public class Player2 : MonoBehaviour
         IAcontroller();
         MovimentoPlayer2();
         LimiteMovimento();
-        LimiteVelocidade();
     }
 
     void MovimentoPlayer2()
@@ -45,14 +44,27 @@ public class Player2 : MonoBehaviour
 
     void IAcontroller()
     {
+
         if (jogador2 == false)
+        {
+            posicaoBola.y = GameObject.FindGameObjectWithTag("Bolinha").transform.position.y;
+
+            posicaoBola.x = 7.50f;
+            
+            //Minha posição, posição q quero seguir, porcentagem com base na velocidade do objeto q estou seguindo.
+            raquete.y = Mathf.Lerp(transform.position.y, posicaoBola.y, 0.015f);
+
+            transform.position = new Vector3 (7.50f, raquete.y, 0f);
+        }
+
+        /*if (jogador2 == false)
         {
             posicaoBola.y = GameObject.FindGameObjectWithTag("Bolinha").transform.position.y;
 
             posicaoBola.x = 7.50f;
 
             transform.position = posicaoBola;
-        }
+        }*/
     }
 
     void LimiteMovimento()
@@ -74,9 +86,4 @@ public class Player2 : MonoBehaviour
         }
     }
 
-
-    void LimiteVelocidade()
-    {
-        
-    }
 }
