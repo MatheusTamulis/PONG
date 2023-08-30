@@ -13,6 +13,8 @@ public class Bolinha : MonoBehaviour
     int scoreP2;
     int direcao;
 
+    public AudioSource ponto;
+
     Rigidbody2D rb;
 
     Vector2 minhaVelocidade;
@@ -24,6 +26,8 @@ public class Bolinha : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        ponto = GetComponent<AudioSource>();
 
         StartCoroutine(DirecaoBolinha());
     }
@@ -48,6 +52,8 @@ public class Bolinha : MonoBehaviour
     {
         if (collision.gameObject.tag == "ParedeDireita")
         {
+            ponto.Play();
+
             scoreP1++;
 
             reset = new Vector2 (0,0);
@@ -59,6 +65,8 @@ public class Bolinha : MonoBehaviour
 
         if (collision.gameObject.tag == "ParedeEsquerda")
         {
+            ponto.Play();
+
             scoreP2++;
 
             reset = new Vector2(0, 0);
