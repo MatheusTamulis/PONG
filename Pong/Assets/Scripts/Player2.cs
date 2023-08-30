@@ -85,5 +85,4 @@ public class Player2 : MonoBehaviour
             transform.position = raquete;
         }
     }
-
 }

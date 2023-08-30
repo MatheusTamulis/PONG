@@ -25,8 +25,15 @@ public class StarGame : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            SceneManager.LoadScene("Gameplay");
+            StartCoroutine(LoadScene());
         }
+    }
+
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("Gameplay");
     }
 
     IEnumerator BlinkText()
