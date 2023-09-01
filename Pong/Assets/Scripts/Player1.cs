@@ -32,16 +32,16 @@ public class Player1 : MonoBehaviour
     {
         raquetePlayer = transform.position;
 
-        if (raquetePlayer.y > 3.82f)
+        if (raquetePlayer.y > 3.86f)
         {
-            raquetePlayer = new Vector2(-7.5f, 3.82f);
+            raquetePlayer = new Vector2(-7.16f, 3.86f);
 
             transform.position = raquetePlayer;
         }
 
-        if (raquetePlayer.y < -3.85f)
+        if (raquetePlayer.y < -3.86f)
         {
-            raquetePlayer = new Vector2(-7.5f, -3.85f);
+            raquetePlayer = new Vector2(-7.16f, -3.86f);
 
             transform.position = raquetePlayer;
         }
