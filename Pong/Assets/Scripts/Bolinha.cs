@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,12 +9,14 @@ public class Bolinha : MonoBehaviour
 {
     public Text txtScoreP1;
     public Text txtScoreP2;
+    public Text winP1;
+    public Text winP2;
 
     int scoreP1;
     int scoreP2;
     int direcao;
 
-    public AudioSource ponto;
+    public AudioSource[] sound;
 
     Rigidbody2D rb;
 
@@ -27,7 +30,7 @@ public class Bolinha : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        ponto = GetComponent<AudioSource>();
+        sound = GetComponents<AudioSource>();
 
         StartCoroutine(DirecaoBolinha());
     }
@@ -48,11 +51,19 @@ public class Bolinha : MonoBehaviour
         RandomBolinha();
     }
 
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("TitleScreen");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.tag == "ParedeDireita")
         {
-            ponto.Play();
+            sound[1].Play();
 
             scoreP1++;
 
@@ -62,10 +73,9 @@ public class Bolinha : MonoBehaviour
 
             RandomBolinha();
         }
-
-        if (collision.gameObject.tag == "ParedeEsquerda")
+        else if (collision.gameObject.tag == "ParedeEsquerda")
         {
-            ponto.Play();
+            sound[1].Play();
 
             scoreP2++;
 
@@ -74,6 +84,13 @@ public class Bolinha : MonoBehaviour
             transform.position = reset;
 
             RandomBolinha();
+        }
+        else
+        {
+            if (collision.collider)
+            {
+                sound[0].Play();
+            }
         }
     }
 
@@ -109,11 +126,20 @@ public class Bolinha : MonoBehaviour
     {
         if (scoreP1 >= 10)
         {
-            SceneManager.LoadScene("TitleScreen");
+            winP1.enabled = true;
+
+            StartCoroutine(LoadScene());
         }
         else if (scoreP2 >= 10) 
         {
-            SceneManager.LoadScene("TitleScreen");
+            winP2.enabled = true;
+
+            StartCoroutine(LoadScene());
         }
+    }
+
+    void WinCondition()
+    {
+
     }
 }

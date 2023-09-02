@@ -52,7 +52,7 @@ public class Player2 : MonoBehaviour
             posicaoBola.x = 7.02f;
             
             //Minha posição, posição q quero seguir, porcentagem com base na velocidade do objeto q estou seguindo.
-            raquete.y = Mathf.Lerp(transform.position.y, posicaoBola.y, 0.01f);
+            raquete.y = Mathf.Lerp(transform.position.y, posicaoBola.y, 0.015f);
 
             transform.position = new Vector3 (7.7f, raquete.y, 0f);
         }

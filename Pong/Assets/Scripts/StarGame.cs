@@ -9,9 +9,15 @@ public class StarGame : MonoBehaviour
 
     public Text txt;
 
+    public AudioSource[] startGame;
+
     // Start is called before the first frame update
     void Start()
     {
+        startGame = GetComponents<AudioSource>();
+
+        startGame[0].Play();
+
         StartCoroutine(BlinkText());
     }
 
@@ -25,12 +31,15 @@ public class StarGame : MonoBehaviour
     {
         if (Input.anyKey)
         {
+            startGame[0].Stop();
             StartCoroutine(LoadScene());
         }
     }
 
     IEnumerator LoadScene()
     {
+        startGame[1].Play();
+
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene("Gameplay");
