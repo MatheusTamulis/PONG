@@ -52,9 +52,9 @@ public class Player2 : MonoBehaviour
             posicaoBola.x = 7.02f;
             
             //Minha posição, posição q quero seguir, porcentagem com base na velocidade do objeto q estou seguindo.
-            raquete.y = Mathf.Lerp(transform.position.y, posicaoBola.y, 0.015f);
+            raquete.y = Mathf.Lerp(transform.position.y, posicaoBola.y, 0.01f);
 
-            transform.position = new Vector3 (7.02f, raquete.y, 0f);
+            transform.position = new Vector3 (7.7f, raquete.y, 0f);
         }
 
         /*if (jogador2 == false)
@@ -71,16 +71,16 @@ public class Player2 : MonoBehaviour
     {
         raquete = transform.position;
 
-        if (raquete.y > 3.86f)
+        if (raquete.y > 3.98f)
         {
-            raquete = new Vector2(7.02f, 3.86f);
+            raquete = new Vector2(7.7f, 3.98f);
 
             transform.position = raquete;
         }
 
-        if (raquete.y < -3.86f)
+        if (raquete.y < -3.98f)
         {
-            raquete = new Vector2(7.02f, -3.86f);
+            raquete = new Vector2(7.7f, -3.98f);
 
             transform.position = raquete;
         }
